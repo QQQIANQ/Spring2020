@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Spring2020.iml" filepath="$PROJECT_DIR$/.idea/Spring2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-sample-aop-standalone/spring-boot-sample-aop.iml" filepath="$PROJECT_DIR$/spring-boot-sample-aop-standalone/spring-boot-sample-aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-sample-data-jpa-standalone/spring-boot-sample-data-jpa.iml" filepath="$PROJECT_DIR$/spring-boot-sample-data-jpa-standalone/spring-boot-sample-data-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-boot-sample-simple-standalone.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-boot-sample-simple-standalone.iml" />
+    </modules>
+  </component>
+</project>

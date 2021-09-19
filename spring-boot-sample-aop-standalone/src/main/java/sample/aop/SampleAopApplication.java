@@ -31,10 +31,12 @@ public class SampleAopApplication implements CommandLineRunner {
 	@Autowired
 	private HelloWorldService helloWorldService;
 
-	
+
 	public void run(String... args) {
 		System.out.println(this.helloWorldService.getHelloMessage());
 	}
+
+
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleAopApplication.class, args);
