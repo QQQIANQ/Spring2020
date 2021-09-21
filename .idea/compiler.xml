@@ -6,8 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot-sample-aop" />
-        <module name="spring-boot-sample-data-jpa" />
         <module name="spring-boot-sample-simple-standalone" />
       </profile>
     </annotationProcessing>
