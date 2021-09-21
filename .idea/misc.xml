@@ -4,8 +4,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/spring-boot-sample-aop-standalone/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-boot-sample-simple-standalone/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-boot-sample-data-jpa-standalone/pom.xml" />
       </list>
     </option>
   </component>
