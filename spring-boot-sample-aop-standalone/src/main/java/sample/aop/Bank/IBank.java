@@ -2,7 +2,7 @@ package sample.aop.Bank;
 
 
 public interface IBank {
-    void getMoney();
+    double getMoney();
 
     boolean transfert();
 }

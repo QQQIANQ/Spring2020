@@ -27,7 +27,6 @@ public class Store  implements IJustHaveALook,ILane,IFastLane{
     @Override
     public void getProductInfo(String dodo) {
         System.out.println(dodo);
-        this.iBank.getMoney();
     }
 
     @Override

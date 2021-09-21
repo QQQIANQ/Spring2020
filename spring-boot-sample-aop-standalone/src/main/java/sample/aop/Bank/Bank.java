@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bank implements IBank {
     @Override
-    public void getMoney() {
-
+    public double getMoney() {
+        return 20.00;
     }
 
     @Override

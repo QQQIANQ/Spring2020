@@ -19,9 +19,9 @@ public class Client implements IRun {
     @Override
     public void run() {
 
-        System.out.println("c'est parti");
+        System.out.println("I'm client");
 
-        iJustHaveALook.getProductInfo("dodo");
+        iJustHaveALook.getProductInfo("I want info about product dodo ");
 
     }
 }
