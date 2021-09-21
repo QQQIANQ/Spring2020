@@ -14,8 +14,8 @@ public class Provider implements IProvider{
     }
 
     @Override
-    public void order(List<Article> panier, Article article) {
-            panier.add(article);
+    public void order(Article article, int quantity) {
+    	
     }
 
 }

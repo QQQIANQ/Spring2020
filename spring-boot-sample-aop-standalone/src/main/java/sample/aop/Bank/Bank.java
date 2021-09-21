@@ -10,7 +10,7 @@ public class Bank implements IBank {
     }
 
     @Override
-    public boolean transfert() {
+    public boolean transfert(IBank bank1, float ammount) {
         return false;
     }
 }

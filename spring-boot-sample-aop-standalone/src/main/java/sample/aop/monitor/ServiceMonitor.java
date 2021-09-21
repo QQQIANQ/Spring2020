@@ -18,21 +18,22 @@ package sample.aop.monitor;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class ServiceMonitor {
 
-	@AfterReturning("execution(* sample..*Client.*(..))")
+	@Before("execution(* sample..*Client.*(..))")
 	public void logClientAccess(JoinPoint joinPoint) {
 		System.out.println("Completed: " + joinPoint);
 	}
 
 
-	@AfterReturning("execution(* sample..*Store.*(..))")
+	@Before("execution(* sample..*Store.*(..))")
 	public void logStoreAccess(JoinPoint joinPoint) {
 		System.out.println("Completed: " + joinPoint);
 	}

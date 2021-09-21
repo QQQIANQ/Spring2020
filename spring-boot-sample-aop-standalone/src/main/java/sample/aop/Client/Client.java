@@ -23,5 +23,6 @@ public class Client implements IRun {
 
         iJustHaveALook.getProductInfo("I want info about product dodo ");
 
+        System.out.println(iJustHaveALook.getPrice());
     }
 }
