@@ -17,25 +17,47 @@
 package sample.aop.monitor;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class ServiceMonitor {
+	ThreadLocal<Long> startTime = new ThreadLocal<>();
+
 
 	@Before("execution(* sample..*Client.*(..))")
 	public void logClientAccess(JoinPoint joinPoint) {
 		System.out.println("Completed: " + joinPoint);
+		startTime.set(System.currentTimeMillis());
 	}
 
+	@Around("execution(* sample..*Client.*(..))")
+	public void aroundClient(ProceedingJoinPoint pjp) throws Throwable{
+		System.out.println("[AspectClient] aroundLogger advise1");
+		pjp.proceed();
+		System.out.println("[AspectClient] aroundLogger advise2");
+	}
+
+	@After("execution(* sample..*Client.*(..))")
+	public void afterLog() {
+		System.out.println("AfterLogger");
+		long start = startTime.get();
+		System.out.println("Time used ：" + (System.currentTimeMillis() - start) + "ms");
+		startTime.remove();
+	}
+	@AfterReturning(value = "execution(* sample..*Client.*(..))",returning = "o")
+	public void afterRunningLog(Object o){
+		System.out.println("afterRunningLog");
+	}
+
+	//ordre -->	@Around ->@Before->Méthodes->@Around pjp.proceed()->@After->@AfterReturning
 
 	@Before("execution(* sample..*Store.*(..))")
 	public void logStoreAccess(JoinPoint joinPoint) {
 		System.out.println("Completed: " + joinPoint);
 	}
+
 
 }
