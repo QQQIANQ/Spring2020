@@ -15,22 +15,29 @@
 
 <form action="/findallusers" method="get">
 
-<table border="1"align="center">
+<table class="table table-hover">
+    <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>DateNaissance</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">DateNaissance</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="u:${listUsers}">
         <td th:text="${u.getId()}"></td>
         <td th:text="${u.getName()}"></td>
         <td th:text="${u.getDateNaissance()}"></td>
         <td>
-            <a th:href="@{/user/deleteUser(id=${u.getId()})}">删除</a>
+            <button th:attr="del_url=@{/deleteuser(id=${u.getId()})}"
+                    class="btn btn-sm btn-danger deleteBtn">Delete</button>
         </td>
     </tr>
+    </tbody>
+
 </table>
 </form>
+
 
 </body>
 </html>

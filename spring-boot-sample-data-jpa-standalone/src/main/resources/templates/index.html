@@ -24,18 +24,19 @@
             <div class="row d-flex justify-content-center">
             <div class="form-floating mb-3 col-md-4 " >
                 <input type="text" class="form-control" id="floatingInput"
-                       placeholder="Nom" th:name="username">
+                       placeholder="Nom" th:name="username"  required>
                 <label for="floatingInput">Nom Utilisateur</label>
             </div>
             </div>
             <div class="row d-flex justify-content-center">
             <div class="form-floating mb-3 col-md-4">
                 <input type="date" class="form-control" id="dateNaissance"
-                       placeholder="dateNaissance" th:name="dateNaissance">
+                       placeholder="dateNaissance" th:name="dateNaissance"  required>
                 <label for="dateNaissance">Date Naissance</label>
             </div>
             </div>
-            <button type="submit" class="btn btn-primary" th:name="action">Enregistrer</button>
+            <button type="submit" class="btn btn-primary" th:name="action"  >Enregistrer
+            </button>
         </form>
     </div>
 </div>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class IndexConroller {
-    @GetMapping("/login")
+    @GetMapping("/")
     public String index() {
         return "index";
     }

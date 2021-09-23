@@ -18,7 +18,6 @@ public class UserController {
      * GET /create  --> Create a new user and save it in the database.
      */
     @RequestMapping(value = "/createuser", method = RequestMethod.POST)
-    @ResponseBody
     public String create(@RequestParam(value = "username", required = false) String username,
                          @RequestParam(value = "dateNaissance", required = false) Date dateNaissance
         ) {
@@ -30,7 +29,8 @@ public class UserController {
         } catch (Exception ex) {
             return "Error creating the user: " + ex.toString();
         }
-        return "User succesfully created with id = " + userId;
+       // return "User succesfully created with id = " + userId;
+        return "redirect:/findallusers";
     }
 
     @RequestMapping(value = "/getuser", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class UserController {
      */
     @RequestMapping(value = "/deleteuser", method = RequestMethod.DELETE)
     @ResponseBody
-    public String delete(@PathVariable("id") Long id) {
+    public String delete(@RequestParam(value = "id", required = false) Long id) {
         try {
             userDao.delete(userDao.findUserById(id));
         } catch (Exception ex) {
