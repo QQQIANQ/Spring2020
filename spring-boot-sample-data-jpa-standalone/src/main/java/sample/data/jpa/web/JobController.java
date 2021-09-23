@@ -61,5 +61,20 @@ public class JobController {
         }
         return "Le salaire du métier "+jobName+" passe à "+salaire+"€";
     }
-
+    
+    
+    /**
+     * GET /updateJob  --> Update job salaire by id
+     *///A COMMENTER. JUSTE POUR PEUPLER LA BDD
+    /*@RequestMapping(value = "/createJob", method = RequestMethod.GET)
+    @ResponseBody
+    public String CreateUser() {//Le POST gere automatiquement le parametrage
+        try {
+            Job job = new Job("Developpeur",4000);
+            jobDao.save(job);
+        } catch (Exception ex) {
+            return "Update create job";
+        }
+        return "";
+    }*/
 }
