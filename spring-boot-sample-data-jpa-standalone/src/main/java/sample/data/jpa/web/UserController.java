@@ -2,6 +2,7 @@ package sample.data.jpa.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import sample.data.jpa.domain.User;
@@ -45,6 +46,12 @@ public class UserController {
         return "The user name is: " + userName;
     }
 
+
+    @RequestMapping(value = "/findallusers", method = RequestMethod.GET)
+    public String findAllUsers(Model model) {
+        model.addAttribute("listUsers",this.userDao.findAll());
+        return "userList";
+    }
     /**
      * GET /delete  --> Delete the user having the passed id.
      */
