@@ -65,7 +65,7 @@ public class UserController {
     @ResponseBody
     public String updateUser(@RequestBody User user) {
         try {
-            userDao.update(user);
+            userDao.save(user);
         } catch (Exception ex) {
             return "Error updating the user: " + ex.toString();
         }

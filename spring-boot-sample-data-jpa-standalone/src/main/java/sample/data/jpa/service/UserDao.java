@@ -7,5 +7,4 @@ import java.util.List;
 public interface UserDao extends JpaRepository<User, Long> {
     public User findUserById(Long id);
 
-    public void update(User user);
 }
