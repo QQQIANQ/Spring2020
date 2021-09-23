@@ -6,5 +6,4 @@ import sample.data.jpa.domain.*;
 public interface AppointmentDao extends JpaRepository<Appointment, Long> {
 
 
-
 }

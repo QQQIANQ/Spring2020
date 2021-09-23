@@ -14,13 +14,15 @@ public class Job implements Serializable {
 
     private int salaires;
 
-    public Job(){
+    public Job() {
 
     }
-    public Job(String name){
+
+    public Job(String name) {
         this.name = name;
     }
-    public Job(String name, int salaires){
+
+    public Job(String name, int salaires) {
         this.name = name;
         this.salaires = salaires;
     }
@@ -30,6 +32,7 @@ public class Job implements Serializable {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,9 +55,9 @@ public class Job implements Serializable {
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Job [id=" + id + ", name=" + name + ", salaires="
-                + salaires+ "]";
+                + salaires + "]";
     }
 
 }

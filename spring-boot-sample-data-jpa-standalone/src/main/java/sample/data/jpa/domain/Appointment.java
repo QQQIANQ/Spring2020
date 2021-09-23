@@ -9,7 +9,7 @@ import java.sql.Date;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAllApointment",query = "select distinct e from Appointment as e")
+        @NamedQuery(name = "getAllApointment", query = "select distinct e from Appointment as e")
 
 })
 public class Appointment implements Serializable {
@@ -25,13 +25,14 @@ public class Appointment implements Serializable {
     private User user;
 
 
-    public Appointment() {}
-    
+    public Appointment() {
+    }
+
     public Appointment(String s, Date d, User u, Worker w) {
-    	this.sujet=s;
-    	this.dateRdv=d;
-    	this.user=u;
-    	this.worker=w;
+        this.sujet = s;
+        this.dateRdv = d;
+        this.user = u;
+        this.worker = w;
     }
 
 
@@ -40,6 +41,7 @@ public class Appointment implements Serializable {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -66,8 +68,8 @@ public class Appointment implements Serializable {
     }
 
     @ManyToOne
-     public Worker getWorker(){
-        return  this.worker;
+    public Worker getWorker() {
+        return this.worker;
     }
 
     @ManyToOne
