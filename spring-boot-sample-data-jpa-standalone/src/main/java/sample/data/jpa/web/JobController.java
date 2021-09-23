@@ -13,22 +13,6 @@ public class JobController {
     private JobDao jobDao;
 
     /**
-     * POST /create  --> Create a new user and save it in the database.
-     */
-    @RequestMapping(value = "/createjob", method = RequestMethod.POST)
-    @ResponseBody
-    public String create(@RequestBody Job job) {
-        String jobId = "";
-        try {
-            jobDao.save(job);
-            jobId = String.valueOf(job.getId());
-        } catch (Exception ex) {
-            return "Error creating the job: " + ex.toString();
-        }
-        return "Job succesfully created with id = " + jobId;
-    }
-
-    /**
      * GET /getjob  --> Get a job name by id
      */
     @RequestMapping(value = "/getjob/{id}", method = RequestMethod.GET)
@@ -49,8 +33,8 @@ public class JobController {
      */
     @RequestMapping(value = "/getsalaire/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public int getSalaireById(@PathVariable("id") Long id) {
-        int salaire = 0;
+    public double getSalaireById(@PathVariable("id") Long id) {
+        double salaire = 0;
         try {
             Job job = jobDao.findJobById(id);
             salaire = job.getSalaires();
@@ -60,20 +44,39 @@ public class JobController {
         return salaire;
     }
 
-
     /**
-     * DELETE /delete  --> Delete the user having the passed id.
+     * POST /updateJob  --> Update job salaire by id
      */
-    @RequestMapping(value = "/deletejob/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/updateJob", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(@PathVariable("id") Long id) {
+    public String updateJobSalaire(@RequestParam("id") Long id, @RequestParam("salaire") double sal) {//Le POST gere automatiquement le parametrage
+        double salaire;
+        String jobName;
         try {
-            jobDao.delete(jobDao.findJobById(id));
+            Job job = jobDao.findJobById(id);
+            job.setSalaires(sal);
+            //il manque pas la persistance ?
+            salaire = job.getSalaires();
+            jobName = job.getName();
         } catch (Exception ex) {
-            return "Error deleting the job:" + ex.toString();
+            return "Update failed";
         }
-        return "Job succesfully deleted!";
+        return "Le salaire du métier "+jobName+" passe à "+salaire+"€";
     }
-
-
+    
+    
+    /**
+     * GET /updateJob  --> Update job salaire by id
+     *///A COMMENTER. JUSTE POUR PEUPLER LA BDD
+    /*@RequestMapping(value = "/createJob", method = RequestMethod.GET)
+    @ResponseBody
+    public String CreateUser() {//Le POST gere automatiquement le parametrage
+        try {
+            Job job = new Job("Developpeur",4000);
+            jobDao.save(job);
+        } catch (Exception ex) {
+            return "Update create job";
+        }
+        return "";
+    }*/
 }
