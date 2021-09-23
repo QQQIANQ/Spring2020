@@ -48,7 +48,7 @@ public class UserController {
     /**
      * GET /delete  --> Delete the user having the passed id.
      */
-    @RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteuser", method = RequestMethod.DELETE)
     @ResponseBody
     public String delete(@PathVariable("id") Long id) {
         try {
