@@ -32,9 +32,9 @@ public class UserController {
         return "User succesfully created with id = " + userId;
     }
 
-    @RequestMapping(value = "/getuser/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
     @ResponseBody
-    public String getNameById(@PathVariable("id") Long id) {
+    public String getNameById(@RequestParam(value = "id", required = false) Long id) {
         String userName = "";
         try {
             User user = userDao.findUserById(id);
