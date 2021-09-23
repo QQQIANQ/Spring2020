@@ -12,7 +12,7 @@ public class Job implements Serializable {
 
     private String name;
 
-    private int salaires;
+    private double salaires;
 
     public Job() {
 
@@ -45,11 +45,11 @@ public class Job implements Serializable {
         this.name = name;
     }
 
-    public int getSalaires() {
+    public double getSalaires() {
         return salaires;
     }
 
-    public void setSalaires(int salaires) {
+    public void setSalaires(double salaires) {
         this.salaires = salaires;
     }
 

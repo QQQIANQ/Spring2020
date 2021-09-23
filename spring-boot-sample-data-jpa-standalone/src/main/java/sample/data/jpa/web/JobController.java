@@ -33,8 +33,8 @@ public class JobController {
      */
     @RequestMapping(value = "/getsalaire/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public int getSalaireById(@PathVariable("id") Long id) {
-        int salaire = 0;
+    public double getSalaireById(@PathVariable("id") Long id) {
+        double salaire = 0;
         try {
             Job job = jobDao.findJobById(id);
             salaire = job.getSalaires();
@@ -49,11 +49,13 @@ public class JobController {
      */
     @RequestMapping(value = "/updateJob", method = RequestMethod.POST)
     @ResponseBody
-    public String updateJobSalaire(@PathVariable("id") Long id, @PathVariable("salaire") double sal) {//Le POST gere automatiquement le parametrage
-        int salaire;
+    public String updateJobSalaire(@RequestParam("id") Long id, @RequestParam("salaire") double sal) {//Le POST gere automatiquement le parametrage
+        double salaire;
         String jobName;
         try {
             Job job = jobDao.findJobById(id);
+            job.setSalaires(sal);
+            //il manque pas la persistance ?
             salaire = job.getSalaires();
             jobName = job.getName();
         } catch (Exception ex) {
