@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.domain.User;
 import sample.data.jpa.service.UserDao;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -18,9 +18,12 @@ public class UserController {
      */
     @RequestMapping(value = "/createuser", method = RequestMethod.POST)
     @ResponseBody
-    public String create(@RequestBody User user) {
+    public String create(@RequestParam(value = "username", required = false) String username,
+                         @RequestParam(value = "dateNaissance", required = false) Date dateNaissance
+        ) {
         String userId = "";
         try {
+            User user = new User(username,dateNaissance);
             userDao.save(user);
             userId = String.valueOf(user.getId());
         } catch (Exception ex) {
