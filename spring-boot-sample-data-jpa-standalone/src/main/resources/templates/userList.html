@@ -28,16 +28,15 @@
         <td th:text="${u.getId()}"></td>
         <td th:text="${u.getName()}"></td>
         <td th:text="${u.getDateNaissance()}"></td>
-        <td>
-            <button th:attr="del_url=@{/deleteuser(id=${u.getId()})}"
-                    class="btn btn-sm btn-danger deleteBtn">Delete</button>
+        <td >
+            <a th:href="@{/deleteuseradmin/{id}(id=${u.getId()})}" class="btn btn-danger">Delete
+            </a>
         </td>
     </tr>
     </tbody>
 
 </table>
 </form>
-
-
+<a th:href="@{/}" class="btn btn-primary">Return</a>
 </body>
 </html>
