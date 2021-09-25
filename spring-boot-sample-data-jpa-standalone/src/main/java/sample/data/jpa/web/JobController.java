@@ -1,7 +1,10 @@
 package sample.data.jpa.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.domain.Job;
 import sample.data.jpa.service.JobDao;
@@ -12,6 +15,15 @@ public class JobController {
     @Autowired
     private JobDao jobDao;
 
+    
+    
+    @RequestMapping("/jobUpdate")
+    public String jobUpdate(Model model) {
+    	model.addAttribute("listJobs",this.jobDao.findAll());
+        return "jobUpdate";
+    }
+    
+    
     /**
      * GET /getjob  --> Get a job name by id
      */
@@ -27,6 +39,7 @@ public class JobController {
         }
         return "The job name is: " + jobName;
     }
+    
 
     /**
      * GET /getsalaire  --> Get a job salaire by id
@@ -49,19 +62,19 @@ public class JobController {
      */
     @RequestMapping(value = "/updateJob", method = RequestMethod.POST)
     @ResponseBody
-    public String updateJobSalaire(@RequestParam("id") Long id, @RequestParam("salaire") double sal) {//Le POST gere automatiquement le parametrage
+    public String updateJobSalaire(@RequestParam(value = "id") Long id, @RequestParam(value = "sal") double sal) {
         double salaire;
         String jobName;
         try {
             Job job = jobDao.findJobById(id);
             job.setSalaires(sal);
-            //il manque pas la persistance ?
+            jobDao.save(job);
             salaire = job.getSalaires();
             jobName = job.getName();
         } catch (Exception ex) {
             return "Update failed";
         }
-        return "Le salaire du métier "+jobName+" passe à "+salaire+"€";
+        return "Le salaire du mÃ©tier "+jobName+" passe Ã  "+salaire+"â‚¬";
     }
     
     
