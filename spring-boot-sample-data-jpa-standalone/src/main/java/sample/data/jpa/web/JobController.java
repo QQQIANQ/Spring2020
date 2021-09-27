@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sample.data.jpa.domain.Job;
+import sample.data.jpa.domain.User;
 import sample.data.jpa.service.JobDao;
 
 @Controller
@@ -39,7 +40,15 @@ public class JobController {
         }
         return "The job name is: " + jobName;
     }
-    
+
+    /**
+     * GET /getjob  --> Get a job name by id
+     */
+    @RequestMapping(value = "/getalljobs", method = RequestMethod.GET)
+    public String getAllJobs(Model model) {
+        model.addAttribute("listJobs",this.jobDao.findAll());
+        return "workerUpdate";
+    }
 
     /**
      * GET /getsalaire  --> Get a job salaire by id
@@ -76,12 +85,24 @@ public class JobController {
         }
         return "Le salaire du métier "+jobName+" passe à "+salaire+"€";
     }
+
+    /**
+     * GET /delete  --> Delete the job having the passed id.
+     */
+    @GetMapping("/deletejob/{id}")
+    //public String delete(@PathVariable("id") long id, Model model) {
+    public String delete(@PathVariable("id") long id, Model model) {
+        Job job = jobDao.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        jobDao.delete(job);
+        return "redirect:/";
+    }
     
     
     /**
      * GET /updateJob  --> Update job salaire by id
      *///A COMMENTER. JUSTE POUR PEUPLER LA BDD
-    /*@RequestMapping(value = "/createJob", method = RequestMethod.GET)
+   /** @RequestMapping(value = "/createJob", method = RequestMethod.GET)
     @ResponseBody
     public String CreateUser() {//Le POST gere automatiquement le parametrage
         try {
@@ -91,5 +112,6 @@ public class JobController {
             return "Update create job";
         }
         return "";
-    }*/
+    }
+    **/
 }

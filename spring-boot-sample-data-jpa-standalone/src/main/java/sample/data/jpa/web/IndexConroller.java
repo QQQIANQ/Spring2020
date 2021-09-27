@@ -14,5 +14,7 @@ public class IndexConroller {
     public String index() {
         return "index";
     }
+    @GetMapping("/workerUpdate")
+    public String workerUpdate(){return "redirect:/getalljobs";}
 
 }
