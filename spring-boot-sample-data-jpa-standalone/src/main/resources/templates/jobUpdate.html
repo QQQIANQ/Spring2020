@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Job Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+          crossorigin="anonymous">
+    <h4 class="display-6">Mise à Jour Métier</h4>
+</head>
+<body class="text-center">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+    <div class="justify-content-center align-items-center">
+        <form method="post" action="/updateJob">
+            <input onchange="displaySal()" id="theId" list="jobList" th:name="id" style="width:5em;" required>
+            <input id="salaire" type="number" th:name="sal" required>
+            <button type="submit" class="btn btn-primary" th:name="action">Update</button>
+        </form>
+
+        <datalist id="jobList">
+            <option th:each="u:${listJobs}" th:value="${u.getId()}" th:label="${u.getName()}">
+        </datalist>
+    </div>
+
+    <script>
+        window.onload=()=>{displayFirst();};
+
+        //au lancement de la page, on charge le premier metier
+        function displayFirst(){
+            if(document.getElementById("jobList").children.length>0){
+                document.getElementById("theId").value=document.getElementById("jobList").children[0].value;
+                displaySal();
+            }else{
+                setTimeout(()=>{displayFirst();},500);
+            }
+        }
+
+        //met a jour le champ salaire en fonction de l id du metier
+        function displaySal(){
+            var id=document.getElementById("theId").value;
+           
+            $.get(//execute a webService !
+                "http://localhost:8000/getsalaire/"+id,
+                function(salaire) {
+                    document.getElementById("salaire").value=salaire;
+                }
+            );
+        }
+    </script>
+
+
+</body>
+</html>
