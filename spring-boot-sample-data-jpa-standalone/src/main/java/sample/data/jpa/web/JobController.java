@@ -42,12 +42,12 @@ public class JobController {
     }
 
     /**
-     * GET /getjob  --> Get a job name by id
+     * GET /getalljobs  --> Get all job
      */
     @RequestMapping(value = "/getalljobs", method = RequestMethod.GET)
     public String getAllJobs(Model model) {
         model.addAttribute("listJobs",this.jobDao.findAll());
-        return "workerUpdate";
+        return "jobList";
     }
 
     /**

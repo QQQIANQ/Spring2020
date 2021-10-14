@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+          crossorigin="anonymous">
+    <title>AppointmentList</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+<form action="/findallappointments" method="get">
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Sujet</th>
+        <th scope="col">Date RDV</th>
+        <th scope="col">user ID</th>
+        <th scope="col">user name</th>
+        <th scope="col">worker ID</th>
+        <th scope="col">worker name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="u:${listAppointments}">
+        <td th:text="${u.getId()}"></td>
+        <td th:text="${u.getSujet()}"></td>
+        <td th:text="${u.getDateRdv()}"></td>
+        <td th:text="${u.getUser().getId()}"></td>
+        <td th:text="${u.getUser().getName()}"></td>
+        <td th:text="${u.getWorker().getId()}"></td>
+        <td th:text="${u.getWorker().getName()}"></td>
+        <!--<td >
+            <a th:href="@{/deleteuseradmin/{id}(id=${u.getId()})}" class="btn btn-danger">Delete
+            </a>
+        </td>-->
+    </tr>
+    </tbody>
+
+</table>
+</form>
+<a th:href="@{/}" class="btn btn-primary">Return</a>
+<a th:href="@{/findallworkers}" class="btn btn-primary">Create Appointment</a>
+</body>
+</html>
