@@ -20,30 +20,47 @@
 <div  class="container h-100">
 
     <div class="row h-100 justify-content-center align-items-center">
-        <form class="col-12" method="post" action="/createuser">
+        <form class="col-12" method="post" action="/createappointment">
             <div class="row d-flex justify-content-center">
-            <div class="form-floating mb-3 col-md-4 " >
-                <input type="text" class="form-control" id="floatingInput"
-                       placeholder="Nom" th:name="username"  required>
-                <label for="floatingInput">Nom Utilisateur</label>
-            </div>
+                <div class="form-floating mb-3 col-md-4 " >
+                    <input type="text" class="form-control" id="subjectInput"
+                        placeholder="Sujet" th:name="sujet" required>
+                    <label for="subjectInput">Sujet</label>
+                </div>
             </div>
             <div class="row d-flex justify-content-center">
-            <div class="form-floating mb-3 col-md-4">
-                <input type="date" class="form-control" id="dateNaissance"
-                       placeholder="dateNaissance" th:name="dateNaissance"  required>
-                <label for="dateNaissance">Date Naissance</label>
+                <div class="form-floating mb-3 col-md-4">
+                    <input type="date" class="form-control" id="dateRDVInput"
+                        placeholder="Date de rendez-vous" th:name="dateRDV" required>
+                    <label for="dateRDVInput">Date de rendez-vous</label>
+                </div>
             </div>
+            <div class="row d-flex justify-content-center">
+                <div class="form-floating mb-3 col-md-4">
+                    <input list="userList" th:name="userID" style="width:100%;height:4em" id="userID"
+                        class="form-control" placeholder="ID utilisateur" required>
+                    <label for="userID">ID utilisateur</label>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" th:name="action"  >Enregistrer
-            </button>
-            <a th:href="@{/findallusers}" class="btn btn-danger">   Administrator
-            </a>
+            <div class="row d-flex justify-content-center">
+                <div class="form-floating mb-3 col-md-4">
+                    <input list="workerList" th:name="workerID" style="width:100%;height:4em" id="workerID"
+                        class="form-control" placeholder="ID professionnel" required>
+                    <label for="workerID">ID professionnel</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" th:name="action">Enregistrer</button>
         </form>
     </div>
 </div>
 
 
+<datalist id="userList">
+    <option th:each="u:${listUsers}" th:value="${u.getId()}" th:label="${u.getName()}">
+</datalist>
+<datalist id="workerList">
+    <option th:each="u:${listWorkers}" th:value="${u.getId()}" th:label="${u.getName()}">
+</datalist>
 
 </body>
 </html>
