@@ -80,7 +80,6 @@ public class UserController {
      * GET /delete  --> Delete the user having the passed id.
      */
     @GetMapping("/deleteuseradmin/{id}")
-    //public String delete(@PathVariable("id") long id, Model model) {
     public String deleteAdmin(@PathVariable("id") long id, Model model) {
         User user = userDao.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));

@@ -36,16 +36,12 @@
         <td th:text="${u.getUser().getName()}"></td>
         <td th:text="${u.getWorker().getId()}"></td>
         <td th:text="${u.getWorker().getName()}"></td>
-        <!--<td >
-            <a th:href="@{/deleteuseradmin/{id}(id=${u.getId()})}" class="btn btn-danger">Delete
-            </a>
-        </td>-->
     </tr>
     </tbody>
 
 </table>
 </form>
 <a th:href="@{/}" class="btn btn-primary">Return</a>
-<a th:href="@{/findallworkers}" class="btn btn-primary">Create Appointment</a>
+<a th:href="@{/createappointment}" class="btn btn-primary">Create Appointment</a>
 </body>
 </html>

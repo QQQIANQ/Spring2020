@@ -28,11 +28,17 @@ public class WorkerController {
         return "workerList";
     }
 
+    @RequestMapping(value = "/createworkerGET", method = RequestMethod.GET)
+    public String createGET(Model model) {
+        model.addAttribute("listJobs",this.jobDao.findAll());
+        return "workerUpdate";
+    }
+    
     /**
-     * GET /create  --> Create a new user and save it in the database.
+     * POST /create  --> Create a new user and save it in the database.
      */
-    @RequestMapping(value = "/createworker", method = RequestMethod.POST)
-    public String create(@RequestParam(value = "workername", required = true) String workername,
+    @RequestMapping(value = "/createworkerPOST", method = RequestMethod.POST)
+    public String createPOST(@RequestParam(value = "workername", required = true) String workername,
                          @RequestParam(value = "dateNaissance", required = true) Date dateNaissance,
                          @RequestParam(value = "jobname",required = true) String jobName,
                          @RequestParam(value = "rate",required = true)int rate,
